@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ public final class InterconnectLocation implements ApiMessage {
   private final String peeringdbFacilityId;
   private final List<InterconnectLocationRegionInfo> regionInfos;
   private final String selfLink;
+  private final String status;
 
   private InterconnectLocation() {
     this.address = null;
@@ -56,6 +57,7 @@ public final class InterconnectLocation implements ApiMessage {
     this.peeringdbFacilityId = null;
     this.regionInfos = null;
     this.selfLink = null;
+    this.status = null;
   }
 
   private InterconnectLocation(
@@ -72,7 +74,8 @@ public final class InterconnectLocation implements ApiMessage {
       String name,
       String peeringdbFacilityId,
       List<InterconnectLocationRegionInfo> regionInfos,
-      String selfLink) {
+      String selfLink,
+      String status) {
     this.address = address;
     this.availabilityZone = availabilityZone;
     this.city = city;
@@ -87,51 +90,55 @@ public final class InterconnectLocation implements ApiMessage {
     this.peeringdbFacilityId = peeringdbFacilityId;
     this.regionInfos = regionInfos;
     this.selfLink = selfLink;
+    this.status = status;
   }
 
   @Override
   public Object getFieldValue(String fieldName) {
-    if (fieldName.equals("address")) {
+    if ("address".equals(fieldName)) {
       return address;
     }
-    if (fieldName.equals("availabilityZone")) {
+    if ("availabilityZone".equals(fieldName)) {
       return availabilityZone;
     }
-    if (fieldName.equals("city")) {
+    if ("city".equals(fieldName)) {
       return city;
     }
-    if (fieldName.equals("continent")) {
+    if ("continent".equals(fieldName)) {
       return continent;
     }
-    if (fieldName.equals("creationTimestamp")) {
+    if ("creationTimestamp".equals(fieldName)) {
       return creationTimestamp;
     }
-    if (fieldName.equals("description")) {
+    if ("description".equals(fieldName)) {
       return description;
     }
-    if (fieldName.equals("facilityProvider")) {
+    if ("facilityProvider".equals(fieldName)) {
       return facilityProvider;
     }
-    if (fieldName.equals("facilityProviderFacilityId")) {
+    if ("facilityProviderFacilityId".equals(fieldName)) {
       return facilityProviderFacilityId;
     }
-    if (fieldName.equals("id")) {
+    if ("id".equals(fieldName)) {
       return id;
     }
-    if (fieldName.equals("kind")) {
+    if ("kind".equals(fieldName)) {
       return kind;
     }
-    if (fieldName.equals("name")) {
+    if ("name".equals(fieldName)) {
       return name;
     }
-    if (fieldName.equals("peeringdbFacilityId")) {
+    if ("peeringdbFacilityId".equals(fieldName)) {
       return peeringdbFacilityId;
     }
-    if (fieldName.equals("regionInfos")) {
+    if ("regionInfos".equals(fieldName)) {
       return regionInfos;
     }
-    if (fieldName.equals("selfLink")) {
+    if ("selfLink".equals(fieldName)) {
       return selfLink;
+    }
+    if ("status".equals(fieldName)) {
+      return status;
     }
     return null;
   }
@@ -204,6 +211,10 @@ public final class InterconnectLocation implements ApiMessage {
     return selfLink;
   }
 
+  public String getStatus() {
+    return status;
+  }
+
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
@@ -241,6 +252,7 @@ public final class InterconnectLocation implements ApiMessage {
     private String peeringdbFacilityId;
     private List<InterconnectLocationRegionInfo> regionInfos;
     private String selfLink;
+    private String status;
 
     Builder() {}
 
@@ -288,6 +300,9 @@ public final class InterconnectLocation implements ApiMessage {
       if (other.getSelfLink() != null) {
         this.selfLink = other.selfLink;
       }
+      if (other.getStatus() != null) {
+        this.status = other.status;
+      }
       return this;
     }
 
@@ -306,6 +321,7 @@ public final class InterconnectLocation implements ApiMessage {
       this.peeringdbFacilityId = source.peeringdbFacilityId;
       this.regionInfos = source.regionInfos;
       this.selfLink = source.selfLink;
+      this.status = source.status;
     }
 
     public String getAddress() {
@@ -445,6 +461,15 @@ public final class InterconnectLocation implements ApiMessage {
       return this;
     }
 
+    public String getStatus() {
+      return status;
+    }
+
+    public Builder setStatus(String status) {
+      this.status = status;
+      return this;
+    }
+
     public InterconnectLocation build() {
 
       return new InterconnectLocation(
@@ -461,7 +486,8 @@ public final class InterconnectLocation implements ApiMessage {
           name,
           peeringdbFacilityId,
           regionInfos,
-          selfLink);
+          selfLink,
+          status);
     }
 
     public Builder clone() {
@@ -480,6 +506,7 @@ public final class InterconnectLocation implements ApiMessage {
       newBuilder.setPeeringdbFacilityId(this.peeringdbFacilityId);
       newBuilder.addAllRegionInfos(this.regionInfos);
       newBuilder.setSelfLink(this.selfLink);
+      newBuilder.setStatus(this.status);
       return newBuilder;
     }
   }
@@ -528,6 +555,9 @@ public final class InterconnectLocation implements ApiMessage {
         + ", "
         + "selfLink="
         + selfLink
+        + ", "
+        + "status="
+        + status
         + "}";
   }
 
@@ -551,7 +581,8 @@ public final class InterconnectLocation implements ApiMessage {
           && Objects.equals(this.name, that.getName())
           && Objects.equals(this.peeringdbFacilityId, that.getPeeringdbFacilityId())
           && Objects.equals(this.regionInfos, that.getRegionInfosList())
-          && Objects.equals(this.selfLink, that.getSelfLink());
+          && Objects.equals(this.selfLink, that.getSelfLink())
+          && Objects.equals(this.status, that.getStatus());
     }
     return false;
   }
@@ -572,6 +603,7 @@ public final class InterconnectLocation implements ApiMessage {
         name,
         peeringdbFacilityId,
         regionInfos,
-        selfLink);
+        selfLink,
+        status);
   }
 }
